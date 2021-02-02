@@ -127,11 +127,11 @@ struct FFT
         return result;
     }
 
-    static inline std::vector<T> mod(const std::vector<std::complex<T>>& input)
+    static inline std::vector<T> mod(const std::vector<std::complex<T>>& input, bool remove_symetry=false)
     {
         assert(std::size(input) == size);
-        std::vector<T> result(size);
-        std::transform(std::cbegin(input), std::cend(input), std::begin(result),
+        std::vector<T> result(size/2+1);
+        std::transform(std::cbegin(input), remove_symetry?std::cend(input)-(size/2-1):std::cend(input), std::begin(result),
             [](const auto& v) { return std::abs(v) / size; });
         return result;
     }
