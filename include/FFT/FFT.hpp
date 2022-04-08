@@ -91,6 +91,8 @@ template <std::size_t size, typename T>
 struct FFT
 {
     static constexpr auto twiddle_size = log2(size);
+    static constexpr auto fft_size = size;
+
     constexpr FFT() { }
 
     std::vector<std::complex<T>> operator()(const std::vector<T>& input)
